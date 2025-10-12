@@ -762,6 +762,35 @@ h6.button {
     border-right: none;
 }
 
+/* Text plan styles */
+.content {
+  display: flex;
+  margin: auto;
+}
+
+.card {
+    width: 350px; 
+    padding: 20px; 
+    margin: 15px; 
+    align-self: flex-start; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .card {
+        order: -1;
+        max-width: 100%;
+        margin: 10px auto
+    }
+}
+
 /* For the expanding items on the FAQ page */
 .accordion {
     background-color: #fff;
@@ -789,9 +818,9 @@ h6.button {
 }
 
 .answer.open {
-    max-height: 140px;
     padding-top: 10px;
 }
+
 
 .question:hover {
     background-color: #ddd;

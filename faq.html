@@ -8,16 +8,6 @@
     <meta content="Pediatrician in Sandy Utah, Pediatric Care, Children's Healthcare, Family Pediatrician, Child Health Services, Pediatric Clinic, Direct Pediatric Care, Sandy Utah Pediatrics, Holistic Pediatric Care, Pediatric Medical Services, Integrated" name="keywords">
     <meta content="Top-rated pediatrician in Sandy, Utah offering comprehensive and holistic healthcare for children. Specializing in personalized medical care for infants, children, and adolescents. Schedule your appointment today." name="description">
 
-    <!-- Reference links -->
-    <!-- https://wasatchpeds.net/ -->
-    <!-- https://intermountainhealthcare.org/locations/alta-view-clinic/pediatrics -->
-    <!-- https://www.healingartspediatrics.com/ -->
-    <!-- https://beehomepediatrics.com/ -->
-    <!-- https://voyageclinics.com/ -->
-    <!-- https://www.zdirect.care/ -->
-    <!-- https://afterhoursmedical.com/locations/sandy-urgent-care-center/ -->
-    <!-- https://mapper.dpcfrontier.com/practice/ohwfxygorcbv -->
-
     <!-- Favicon -->
     <link rel="icon" href="/img/FalconTransparent.png" type="image/png">
 
@@ -168,7 +158,7 @@
                         <h4>My family is pretty healthy and doesn't need to go to the doctor often. Should I still sign up?</h4>
                     </div>
                     <div class="answer">
-                        <p>Yes! Our text-only plan is great for families who have questions here and there but don't need to visit a doctor very often. We can help you have peace of mind about the little things, and it's only $20 a month for the whole family.</p>
+                        <p>Yes! Our text-only plan is great for families who have questions here and there but don't need to visit a doctor very often. We can help you have peace of mind about the little things, and it's only <span data-price="text"></span> a month for the whole family.</p>
                     </div>
                 </div>
 
@@ -212,7 +202,7 @@
                     <div class="question" onclick="toggleFAQ(this)">
                         <h4>What do you do about vaccines?</h4>
                     </div>
-                    <div class="answer">
+                    <div class="answer"> 
                         <p>Our priority is always to do what works best for your family. If you have questions about vaccines, we will sit down with you, listen to your questions and concerns. We can provide you with up-to-date information, and we will respect the decisions you make for your family. We do provide in-home vaccines for private insurance holders and cash payers. We help uninsured families find affordable options.</p>
                     </div>
                 </div>
@@ -248,15 +238,33 @@
         function toggleFAQ(question) {
             const content = question.nextElementSibling;
             const isOpen = content.classList.contains('open');
+            
+            // Adjust how long each item takes to open
+            const height = content.scrollHeight;
+            const duration = Math.min(0.002 * height + 0.2, 1.2);
+            content.style.transition = `max-height ${duration}s ease, padding ${duration}s ease`;
 
             if (isOpen) {
+                content.style.maxHeight = null;
                 content.classList.remove('open');
             } else {
                 content.classList.add('open');
+                content.style.maxHeight = height + "px"; // Dynamically set height of the answer to fit content
             }
         }
     </script>
 
+    <!-- Load prices -->
+    <script>
+        fetch('prices.json')
+        .then(res => res.json())
+        .then(prices => {
+            document.querySelectorAll('[data-price]').forEach(el => {
+            const key = el.dataset.price;
+            el.textContent = prices[key] ?? 'N/A';
+            });
+        });
+    </script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
