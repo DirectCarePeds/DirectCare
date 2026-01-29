@@ -21,17 +21,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Add Animate.css for services.html Page-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Other head elements (title, meta charset, etc.) go here -->
 
@@ -79,7 +79,7 @@
     <script>
         function redirectToAnnualMembershipSignUp() {
             // Specify the URL you want to redirect to
-            var redirectUrl = "https://directcare.hint.com/signup/text-only-dental";
+            var redirectUrl = "https://directcare.hint.com/signup/text-only-plan";
 
             // Open the URL in a new tab
             window.open(redirectUrl, "_blank");
@@ -120,7 +120,7 @@
 
         <!-- Nav Bar Start-->
         <div id="nav-bar-placeholder"></div>
-        <script src="load-nav-bar.js"></script>
+        <script src="/load-nav-bar.js"></script>
         <!-- Nav Bar End-->
 
 
@@ -148,90 +148,18 @@
                         <div class="membership-box">
                             <h2 style="text-align: center;"><i class="fa fa-heartbeat" aria-hidden="true"></i> Contact Us for an Appointment</h2>
                             <br>
-                            <div class="btn-center">
-                                <a class="btn btn-primary py-3 px-5" href="sms:+13854632757" target="_blank"><h4  style="color: white;"> Text Us </h4></a>
-                            </div>
-                            <br>
-                            <div class="btn-center">
+                            <div class="btn-center d-flex justify-content-center gap-3 mt-3 flex-wrap">
+                                <a class="btn btn-primary py-3 px-5 text-white" href="sms:+13854632757" target="_blank"><h4  style="color: white;"> Text Us </h4></a>
                                 <a class="btn btn-primary py-3 px-5 text-white" href="mailto:appointments@directcarepediatrics.com" target="_blank"><h4 style="color: white;"> Email Us </h4></a>
-                            </div>
-                            <br>
-                            <div class="btn-center">
-                                <a class="btn btn-primary py-3 px-5 text-white" href="tel:+13854632757" target="_blank"><h4 style="color: white;"> Call Us </h4></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Comment Out Doesn't Work For Now
-                        Second membership box
-                    <div class="col-lg-5 wow animate__animated animate__fadeInRight" data-wow-delay="0.8s">
-                        <div class="membership-box">
-                            <h2 style="text-align: center;"><i class="fa fa-medkit" aria-hidden="true"></i> Schedule an Appointment </h2>
-                            <br>
-                            <div class="btn-center">
-                                <a class="btn btn-primary py-3 px-5" href="https://directcare.hint.com/booking?appointment-type=appty-154c591956ea876a" target="_blank" style="color: white;"> Appointment Scheduler </h4></a>
-                            </div>
-                            <br>
-                            
-                            <div class="btn-center">
-                                <a class="btn btn-primary py-3 px-5" href="" target="_blank"><h4  style="color: white;"> Membership Agreement </h4></a>
-                            </div>
-                            <br>
-                            <div class="btn-center">
-                                <a class="btn btn-primary py-3 px-5" href="" target="_blank"><h4  style="color: white;"> Member Resources </h4></a>
-                            </div>
-                          
-                        </div>
-                          -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1><i class="fa fa-star" aria-hidden="true"></i> Sign Up Now <i class="fa fa-star" aria-hidden="true"></i></h1>
-                    <p>For detailed info about each plan see <a href="services.html">services page.</a></p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s" onclick="redirectToAnnualMembershipSignUp()">
-                        <div class="facility-item">
-                            <div class="facility-text bg-primary">
-                                <h3 class="text-primary mb-3">Annual Commitment</h3>
-                                <p class="mb-0"><h2>$75/month</h2></p>
-                            </div>
-                        </div>
-                    </div>                
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s" onclick="redirectToMonthlySignUp()">
-                        <div class="facility-item">
-                            <div class="facility-text bg-success">
-                                <h3 class="text-success mb-3">Month-to-Month Membership</h3>
-                                <p class="mb-0"><h2>$85/month</h2></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s" onclick="redirectToNewPatientVisitLink()">
-                        <div class="facility-item">
-                            <div class="facility-text bg-warning">
-                                <h3 class="text-warning mb-3">One-Time New Patient</h3>
-                                <p class="mb-0"><h2>$300</h2></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s" onclick="redirectToReturnPatientVisitLink()">
-                        <div class="facility-item">
-                            <div class="facility-text bg-info">
-                                <h3 class="text-info mb-3">One-Time Returning Patient</h3>
-                                <p class="mb-0"><h2>$270</h2></p>
+                                <a class="btn btn-primary py-3 px-5 text-white" href="sms:+13854632757" target="_blank"><h4 style="color: white;"> Call Us </h4></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        -->
-        <!-- Sign Up Now End -->
-
+    </div>
+        
         <!-- Not Ready to Sign Up Section -->
         <div class="container mt-5 wow animate__animated animate__fadeInRight" data-wow-delay="0.5s" data-wow-duration="1s">
             <div class="row">
@@ -248,11 +176,14 @@
 
         <!-- Load the footer -->
         <div id="footer-placeholder"></div>
-        <script src="load-footer.js"></script>
+        <script src="/load-footer.js"></script>
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- Load the chat -->
+        <script src="https://widgets.leadconnectorhq.com/loader.js"
+            data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+            data-widget-id="6836725cb8f8b54477ea101d">
+        </script>
     </div>
 
     <!-- JavaScript Libraries -->
@@ -261,10 +192,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Add Wow.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
@@ -273,7 +204,7 @@
     </script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

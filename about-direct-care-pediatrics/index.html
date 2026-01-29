@@ -5,8 +5,11 @@
     <meta charset="utf-8">
     <title>Blog</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
+
+    <!-- Replace these with meta tags for SEO -->
+    <meta content="Pediatrician in Sandy Utah, Pediatric Care, Children's Healthcare, Family Pediatrician, Child Health Services, Pediatric Clinic, Direct Pediatric Care, Sandy Utah Pediatrics, Holistic Pediatric Care, Pediatric Medical Services, Integrated, Text a Pediatrician, Text, Pediatrician, Concierge Pediatrics" name="keywords">
     <meta content="" name="description">
+    
 
     <!-- Favicon -->
     <link rel="icon" href="/img/FalconTransparent.png" type="image/png">
@@ -21,14 +24,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Other head elements (title, meta charset, etc.) go here -->
 
@@ -94,18 +97,50 @@
         </div>
         <!-- Spinner End -->
 
-
         <!-- Load the Nav Bar -->
         <div id="nav-bar-placeholder"></div>
-        <script src="load-nav-bar.js"></script>      
+        <script src="/load-nav-bar.js"></script>  
+        
 
+        <!-- Content Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div id="post-list" style="margin: 15px; margin: auto; max-width: 900px;">
-                    
+                <div style="margin: 15px; margin: auto; max-width: 900px;">
+                    <h1>About Direct Care Pediatrics</h1>
+                    <p>Direct Care Pediatrics is a pediatric medical practice based in Sandy, Utah, founded by Dr. Dallin Hubbard, MD, PhD. We provide modern pediatric care through a direct care model that prioritizes access, longer visits, and direct communication between families and their pediatrician.</p>
+
+                    <h2>What We Do</h2>
+                    <p>Direct Care Pediatrics offers:</p>
+                    <ul>
+                        <li>Pediatric house calls</li>
+                        <li>Virtual pediatric visits</li>
+                        <li>Text-based pediatric care</li>
+                        <li>Newborn and infant care</li>
+                        <li>Preventive and sick visits</li>
+                        <li>Lab testing and imaging coordination</li>
+                        <li>School and daycare medical documentation</li>
+                    </ul>
+                    <p>Our care model is designed to help families manage common childhood illnesses, developmental concerns, and preventive care without unnecessary urgent care or emergency room visits.</p>
+
+                    <h2>How Our Care Model Works</h2>
+                    <p>Direct Care Pediatrics does not accept traditional health insurance. Families pay transparent monthly memberships or visit-based fees, which allows for:</p>
+                    <ul>
+                        <li>Direct access to a pediatrician via text</li>
+                        <li>Same or next-day virtual visits</li>
+                        <li>In-home pediatric visits when appropriate</li>
+                        <li>Clear, upfront pricing</li>
+                    </ul>
+                    <p>This model allows physicians to spend more time with families and focus on practical, evidence-based pediatric care.</p>
+
+                    <h2>Areas We Serve</h2>
+                    <p>Our clinic is located in Sandy, Utah. We provide pediatric house calls in Sandy and surrounding communities, including Draper, South Jordan, Riverton, Midvale, Cottonwood Heights, and nearby areas. Virtual pediatric visits are available to families throughout the state of Utah.</p>
+
+                    <h2>Our Mission</h2>
+                    <p>Direct Care Pediatrics exists to make pediatric care more accessible, personal, and family-centered by removing insurance barriers and restoring the doctor–patient relationship.</p>
                 </div>
             </div>
         </div>
+        <!-- Content End -->
         
         
         <!--Cookie Bot CMP Compliance -->
@@ -113,72 +148,25 @@
 
         <!-- Load the footer -->
         <div id="footer-placeholder"></div>
-        <script src="load-footer.js"></script>
+        <script src="/load-footer.js"></script>
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <!-- Load the chat -->
+        <script src="https://widgets.leadconnectorhq.com/loader.js"
+            data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+            data-widget-id="6836725cb8f8b54477ea101d">
+        </script>
     </div>
-
-    <!-- Load the data from each blog post in the "blog-posts" folder -->
-    <script>
-        const postUrls = [
-            "blog-post-1.html",
-            "blog-post-2.html",
-            "blog-post-3.html",
-            // Add more as they are created
-        ]
-
-        Promise.all(
-            postUrls.map(url =>
-                fetch(url)
-                    .then(res => res.text())
-                    .then(html => {
-                        const doc = new DOMParser().parseFromString(html, "text/html");
-                        const json = doc.getElementById("post-info")?.textContent;
-                        return json ? JSON.parse(json) : null;
-                    })
-            )
-        ).then(posts => {
-            posts.forEach(post => {
-                if (!post) return;
-                const div = document.createElement("div");
-                div.innerHTML = `
-                    <a href="${post.url}">
-                    <div class="post-link">
-                        <h2>${post.title}</h2>
-                        <p><strong>Date:</strong> ${post.date}</p>
-                        <p>${post.summary}</p>
-                    </div>
-                    </a>`;
-                document.getElementById("post-list").appendChild(div);
-            })
-        })
-    </script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>
-
-
-<!-- Creating a new blog post instructions 
-1. Create a copy of the file "blog-template.html"
-    1.b. Rename this file to whatever you want
-2. Replace the comment that says "CONTENT HERE" with the blog content
-3. Replace the meta tags with the new tags for SEO under the comment "Replace these with meta tags for SEO"
-4. Fill in the information under "Post information" including the following
-    - title
-    - date
-    - summary
-    - url 
-5. Add the url (it should be the same url as in step 4) to the list at line 124
--->
