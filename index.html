@@ -32,18 +32,21 @@
 
     <!-- Other head elements (title, meta charset, etc.) go here -->
 
-    <!-- Open Graph meta tags -->
-    <meta property="og:title" content="Direct Care Pediatrics">
-    <meta property="og:description" content="Direct Primary Care in Utah">
-    <meta property="og:image" content="img\thumbnail.JPG">
-    <meta property="og:url" content="directcarepediatrics.com">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://directcarepediatrics.com/">
 
-    <!-- Optional: Twitter Card meta tags -->
+    <!-- Open Graph meta tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pediatrician in Sandy, Utah | Direct Care Pediatrics">
+    <meta property="og:description" content="Sandy, Utah's text-first pediatric practice. Unlimited texting, same-day appointments, home visits, and virtual care. Meet Dr. Dallin Hubbard, MD, PhD.">
+    <meta property="og:image" content="https://directcarepediatrics.com/img/thumbnail.JPG">
+    <meta property="og:url" content="https://directcarepediatrics.com">
+
+    <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@yourtwitterhandle">
-    <meta name="twitter:title" content="Direct Care Pediatrics">
-    <meta name="twitter:description" content="Direct Primary Care in Utah">
-    <meta name="twitter:image" content="img\thumbnail.JPG">
+    <meta name="twitter:title" content="Pediatrician in Sandy, Utah | Direct Care Pediatrics">
+    <meta name="twitter:description" content="Sandy, Utah's text-first pediatric practice. Unlimited texting, same-day appointments, home visits, and virtual care. Meet Dr. Dallin Hubbard, MD, PhD.">
+    <meta name="twitter:image" content="https://directcarepediatrics.com/img/thumbnail.JPG">
 
     <!-- Other meta tags, CSS files, or external scripts -->
     <script>
@@ -82,6 +85,177 @@
     gtag('js', new Date());
 
     gtag('config', 'G-8P02GLCR0W');
+    </script>
+
+
+    <!-- ============================================================
+         JSON-LD STRUCTURED DATA
+         This block is read by Google AI Overviews, ChatGPT, Gemini,
+         Claude, and Perplexity to extract facts about this practice.
+         Update prices, hours, and services here if they change.
+    ============================================================ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+
+        {
+          "@type": ["Pediatrician", "LocalBusiness"],
+          "@id": "https://directcarepediatrics.com/#practice",
+          "name": "Direct Care Pediatrics",
+          "description": "Direct Primary Care pediatric practice in Sandy, Utah. Families pay a monthly membership for unlimited texting, same-day appointments, home visits, and virtual care — no insurance required.",
+          "url": "https://directcarepediatrics.com",
+          "telephone": "+13854632757",
+          "priceRange": "$30–$300/month",
+          "medicalSpecialty": "Pediatrics",
+
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1434 E 9400 S",
+            "addressLocality": "Sandy",
+            "addressRegion": "UT",
+            "postalCode": "84093",
+            "addressCountry": "US"
+          },
+
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 40.5702,
+            "longitude": -111.8531
+          },
+
+          "areaServed": [
+            { "@type": "City", "name": "Sandy" },
+            { "@type": "City", "name": "Draper" },
+            { "@type": "City", "name": "South Jordan" },
+            { "@type": "City", "name": "Riverton" },
+            { "@type": "State", "name": "Utah" }
+          ],
+
+          "employee": {
+            "@type": "Physician",
+            "@id": "https://directcarepediatrics.com/#dr-hubbard",
+            "name": "Dallin Hubbard",
+            "honorificPrefix": "Dr.",
+            "honorificSuffix": "MD, PhD",
+            "jobTitle": "Pediatrician",
+            "medicalSpecialty": "Pediatrics",
+            "description": "Dr. Dallin Hubbard is a board-eligible pediatrician with an MD and PhD. He trained in neonatology at Riley Hospital for Children and founded Direct Care Pediatrics to offer personalized, membership-based pediatric care in Sandy, Utah.",
+            "worksFor": { "@id": "https://directcarepediatrics.com/#practice" },
+            "alumniOf": [
+              { "@type": "EducationalOrganization", "name": "Riley Hospital for Children" }
+            ]
+          },
+
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Pediatric Membership Plans",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Full Membership",
+                "description": "Unlimited clinic visits, well-child checks, prescriptions, and orders for one child. Includes two dental cleanings with X-rays annually.",
+                "price": "105",
+                "priceCurrency": "USD",
+                "unitText": "per month per child"
+              },
+              {
+                "@type": "Offer",
+                "name": "Text-Only Plan",
+                "description": "Unlimited text and email access to a pediatrician and pediatric dentist for all children in the family. Virtual, office, and home visits available at additional cost.",
+                "price": "30",
+                "priceCurrency": "USD",
+                "unitText": "per month for all kids"
+              },
+              {
+                "@type": "Offer",
+                "name": "All the Kids",
+                "description": "Full membership benefits extended to all children in the family at one flat monthly rate.",
+                "price": "300",
+                "priceCurrency": "USD",
+                "unitText": "per month for all kids"
+              }
+            ]
+          },
+
+          "availableService": [
+            {
+              "@type": "MedicalTherapy",
+              "name": "Well-Child Visits",
+              "description": "Comprehensive well-child checkups from newborns through adolescents, including vaccinations and developmental screening."
+            },
+            {
+              "@type": "MedicalTherapy",
+              "name": "Pediatric Home Visits",
+              "description": "Dr. Hubbard makes house calls throughout the Salt Lake Valley including Sandy, Draper, and South Jordan. Starting at $100."
+            },
+            {
+              "@type": "MedicalTherapy",
+              "name": "Virtual Pediatric Visits",
+              "description": "Video consultations available for Utah families statewide."
+            },
+            {
+              "@type": "MedicalTherapy",
+              "name": "Text-Based Pediatric Care",
+              "description": "Unlimited direct texting with a real pediatrician — no chatbots, no waiting rooms, same-day responses."
+            },
+            {
+              "@type": "MedicalTherapy",
+              "name": "At-Home Diagnostics",
+              "description": "Home testing for strep, UTI, RSV, flu, and measles throughout Utah. Results within 24 hours."
+            }
+          ]
+        },
+
+        {
+          "@type": "FAQPage",
+          "@id": "https://directcarepediatrics.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Direct Primary Care for pediatrics?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Direct Primary Care (DPC) is a membership-based model where families pay a flat monthly fee directly to the practice instead of billing insurance. At Direct Care Pediatrics in Sandy, Utah, this includes unlimited texting with a real pediatrician, same-day appointments, virtual visits, and home visits — all without copays or insurance hassles."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How much does Direct Care Pediatrics cost?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Direct Care Pediatrics offers three plans: Full Membership at $105/month per child (unlimited visits), Text-Only Plan at $30/month for all kids in the family (text access plus pay-per-visit options), and All the Kids at $300/month for all children with full membership benefits. There is no registration fee."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Direct Care Pediatrics accept insurance?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Direct Care Pediatrics does not bill insurance. Families pay a monthly membership fee directly to the practice. Insurance can still be used for specialists, hospitalizations, and prescriptions filled at external pharmacies."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Dr. Hubbard do home visits?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Dr. Dallin Hubbard makes house calls throughout the Salt Lake Valley including Sandy, Draper, South Jordan, and surrounding areas. Home visits start at $100 and are available to both Full Membership and All the Kids plan members."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is Direct Care Pediatrics located?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Direct Care Pediatrics is located at 1434 E 9400 S, Sandy, Utah 84093. Dr. Hubbard also offers home visits and virtual appointments throughout Utah."
+              }
+            }
+          ]
+        }
+
+      ]
+    }
     </script>
 
 </head>
