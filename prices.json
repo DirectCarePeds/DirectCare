@@ -14,5 +14,9 @@
     "text_home_diagnostic": "$65",
     "all_kids": "$300",
     "all_kids_home": "$100",
-    "travel": "$50"
+    "travel": "$50",
+    "full_annual": "$1200",
+    "text_annual": "$300",
+    "text_annual_monthly": "$25",
+    "dental_cleaning": "$150"
 }

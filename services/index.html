@@ -213,7 +213,7 @@
                             </ul>
                             <p>
                                 <em>*Prescription or lab & imaging orders are billed as a virtual visit</em>
-                                <em>*$40 Cancelation Fee if less than 1 year</em>
+                                <em>*<span data-price="text_cancelation"></span> Cancelation Fee if less than 1 year</em>
                             </p>
 
                             <a class="btn btn-primary py-3 px-5" style="display: block; margin: 0 auto; max-width: fit-content;" href="https://directcare.hint.com/signup/text-only-dental">
@@ -294,7 +294,7 @@
 
     <!-- Load prices -->
     <script>
-        fetch('prices.json')
+        fetch('/prices.json')
         .then(res => res.json())
         .then(prices => {
             document.querySelectorAll('[data-price]').forEach(el => {
