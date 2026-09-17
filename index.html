@@ -276,9 +276,9 @@
         .plan-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
+            gap: 3.5rem;
             align-items: stretch;
-            max-width: 88%;
+            max-width: 72%;
             margin: 0 auto;
         }
         @media (max-width: 900px) {
@@ -338,8 +338,11 @@
         .plan-card .plan-fine { font-size: 0.68rem; color: #6c757d; padding-top: 0.5rem; text-align: center; }
         .plan-card .plan-btn {
             margin-top: auto;
+            align-self: center;
+            width: 100%;
+            max-width: 260px;
             text-align: center;
-            padding: 0.7rem 1rem;
+            padding: 1rem 1rem;
             border-radius: 999px;
             font-weight: 700;
         }
@@ -403,7 +406,7 @@
             width: 440px;
             max-width: 85%;
             aspect-ratio: 1 / 1;
-            margin: 0 auto -3rem;
+            margin: 0 auto -2rem;
             border-radius: 16px;
             overflow: hidden;
         }
@@ -413,6 +416,25 @@
             object-fit: cover;
             object-position: center 15%;
             display: block;
+        }
+
+        /* Full Membership entrance: rise in like the rest of the page,
+           then shake once settled, so it stands out after both cards
+           have appeared. Reuses the same wiggle pattern as the
+           existing .shake price hover effect. */
+        @keyframes fadeInUpShake {
+            0% { opacity: 0; transform: translate3d(0, 30px, 0); }
+            45% { opacity: 1; transform: translate3d(0, 0, 0); }
+            55% { transform: translate3d(-6px, 0, 0); }
+            65% { transform: translate3d(6px, 0, 0); }
+            75% { transform: translate3d(-4px, 0, 0); }
+            85% { transform: translate3d(4px, 0, 0); }
+            95% { transform: translate3d(-2px, 0, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+        .fadeInUpShake {
+            animation-name: fadeInUpShake;
+            animation-duration: 1.6s;
         }
     </style>
 
@@ -487,7 +509,7 @@
                     <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button" style="margin-top: 20px;"><span class="button button-lg">Text a Doctor Now</span></a>
                 </div>
 
-                <div class="cta-photo wow fadeIn" data-wow-delay="0.1s">
+                <div class="cta-photo wow fadeInUp" data-wow-delay="0.1s">
                     <img src="/img/child-dressed-doctor-membership-plans.jpg" alt="Child dressed as a doctor with a stethoscope">
                 </div>
             </div>
@@ -497,11 +519,11 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <h2 class="text-center mb-2">Choose Your Membership</h2>
-                <p class="text-center mb-4">Simple, transparent pricing with no insurance required.</p>
+                <p class="text-center mb-5">Simple, transparent pricing with no insurance required.</p>
 
                 <div class="plan-row">
                     <!-- Text Membership -->
-                    <div class="plan-card plan-value wow fadeIn" data-wow-delay="0.1s">
+                    <div class="plan-card plan-value wow fadeInUp" data-wow-delay="0.1s">
                         <br>
                         <div class="plan-emoji">💬</div>
                         <h3>Text Membership</h3>
@@ -520,12 +542,12 @@
                             <img src="/img/child-dressed-doctor-membership-plans.jpg" alt="Child dressed as a doctor with a stethoscope">
                         </div>
                         -->
-                        <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Start Text Member</a>
+                        <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Start Text Membership</a>
                         <p class="plan-fine">No registration fee. <span data-price="text_cancelation"></span> cancelation fee if canceled within 12 months.</p>
                     </div>
 
                     <!-- Full Membership (featured) -->
-                    <div class="plan-card plan-featured wow fadeIn" data-wow-delay="0.3s">
+                    <div class="plan-card plan-featured wow fadeInUpShake" data-wow-delay="0.3s">
                         <div class="plan-badge">Most Popular</div>
                         <div class="plan-emoji">👶</div>
                         <h3>Full Membership</h3>
