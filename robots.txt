@@ -2,5 +2,10 @@ User-agent: *
 Allow: /
 Disallow: /old-unlinked/
 Disallow: /contact-form/
+Disallow: /blog-template.html
+Disallow: /footer.html
+Disallow: /nav-bar.html
+Disallow: /testimonial.html
+Disallow: /thankyou.html
 
 Sitemap: /sitemap.xml

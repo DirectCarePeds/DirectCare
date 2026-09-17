@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Pediatrics Practice in Sandy, Utah</title>
+    <title>Sign Up for a Pediatric Membership Plan | Direct Care Pediatrics</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Pediatrician in Sandy Utah, Pediatric Care, Children's Healthcare, Family Pediatrician, Child Health Services, Pediatric Clinic, Direct Pediatric Care, Sandy Utah Pediatrics, Holistic Pediatric Care, Pediatric Medical Services, Integrated, Text a Pediatrician, Text, Pediatrician, Concierge Pediatrics" name="keywords">
     <meta content="Join Direct Care Pediatrics today. Simple, transparent pricing for memberships and text plans that make pediatric care easy and accessible" name="description">
@@ -79,6 +79,28 @@
             text-align: center;
             padding: 16px 14px;
             border-bottom: 2px solid rgba(0,0,0,0.1);
+        }
+        /* Featured plan highlight (desktop + mobile) */
+        .plan-header th.featured,
+        .mobile-plan-header.featured {
+            box-shadow: inset 0 0 0 2px #fe0840;
+        }
+        .mobile-plan-header.featured {
+            border-radius: 12px 12px 0 0;
+        }
+        .plan-badge {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 8px;
+            background: #fe0840;
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 999px;
+            white-space: nowrap;
         }
         /* Sign-up button row — no borders, no background, just the buttons */
         .pricing-table .btn-row td {
@@ -229,15 +251,16 @@
                     <thead>
                         <tr class="plan-header">
                             <th class="feature-label" style="background-color: transparent; border: none;"></th>
-                            <th style="background-color: #ffe7ec;">
-                                <span class="plan-name">Full Membership</span>
-                                <span class="plan-price shake" style="color:#fe0840;"><span data-price="full_zero_to_one"></span></span>
-                                <span class="plan-unit" style="color:#fe0840;">/month per child</span>
-                            </th>
                             <th style="background-color: #fff9e7;">
                                 <span class="plan-name">Text Only</span>
                                 <span class="plan-price shake" style="color:#ffc107;"><span data-price="text"></span></span>
                                 <span class="plan-unit" style="color:#ffc107;">/month all kids</span>
+                            </th>
+                            <th class="featured" style="background-color: #ffe7ec;">
+                                <div class="plan-badge">Most Popular</div>
+                                <span class="plan-name">Full Membership</span>
+                                <span class="plan-price shake" style="color:#fe0840;"><span data-price="full_zero_to_one"></span></span>
+                                <span class="plan-unit" style="color:#fe0840;">/month per child</span>
                             </th>
                             <th style="background-color: #e7fafe;">
                                 <span class="plan-name">All the Kids!</span>
@@ -251,8 +274,8 @@
                         <!-- Home Visits -->
                         <tr>
                             <td class="feature-label">Home Visits</td>
-                            <td class="text-center">Starting at <span data-price="full_home"></span></td>
                             <td class="text-center">Diagnostics Only</td>
+                            <td class="text-center">Starting at <span data-price="full_home"></span></td>
                             <td class="text-center">Starting at <span data-price="all_kids_home"></span></td>
                         </tr>
                         <!-- Text Physician -->
@@ -265,43 +288,50 @@
                         <!-- Virtual Visits -->
                         <tr>
                             <td class="feature-label">Virtual Visits</td>
-                            <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                             <td class="text-center"><span data-price="text_virtual"></span> / Consult or Order</td>
+                            <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                             <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                         </tr>
                         <!-- Office Visits -->
                         <tr class="row-alt">
                             <td class="feature-label">Office Visits</td>
-                            <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                             <td class="text-center"><span data-price="text_office"></span> / Office Visit</td>
+                            <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                             <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                         </tr>
                         <!-- Minor Procedures -->
                         <tr>
                             <td class="feature-label">Minor Procedures</td>
-                            <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
                             <td class="text-center"><img src="/img/redx.png" class="check-img" alt="Not included"></td>
                             <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
+                            <td class="text-center"><img src="/img/greencheck.png" class="check-img" alt="Included"></td>
+                        </tr>
+                        <!-- Paid Annually -->
+                        <tr class="row-alt">
+                            <td class="feature-label">Paid Annually</td>
+                            <td class="text-center"><span data-price="text_annual"></span>/yr<br><small style="font-weight: 400; color: #777;">(<span data-price="text_annual_monthly"></span>/mo, 15% off)</small></td>
+                            <td class="text-center"><span data-price="full_annual"></span>/yr<br><small style="font-weight: 400; color: #777;">(5% off)</small></td>
+                            <td class="text-center"><span data-price="all_kids_annual"></span>/yr<br><small style="font-weight: 400; color: #777;">(pay in advance)</small></td>
                         </tr>
                         <!-- Cancellation Fee -->
-                        <tr class="row-alt">
+                        <tr>
                             <td class="feature-label">Cancellation Fee<br><small style="font-weight: 400; color: #777;">If canceled &lt;1 year</small></td>
-                            <td class="text-center"><span data-price="full_cancelation"></span> / Child</td>
                             <td class="text-center"><span data-price="text_cancelation"></span> / Family</td>
                             <td class="text-center"><span data-price="full_cancelation"></span> / Child</td>
+                            <td class="text-center"><span data-price="full_cancelation"></span> / Family</td>
                         </tr>
                         <!-- Sign Up Buttons -->
                         <tr class="btn-row">
                             <td class="feature-label"></td>
                             <td class="text-center">
-                                <a data-link="full" target="_blank" class="btn btn-primary btn-signup">
-                                    <small>Full Membership</small>
+                                <a data-link="text_plan" target="_blank" class="btn btn-primary btn-signup">
+                                    <small>Text Member</small>
                                     Sign Up
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a data-link="text_plan" target="_blank" class="btn btn-primary btn-signup">
-                                    <small>Text Member</small>
+                                <a data-link="full" target="_blank" class="btn btn-primary btn-signup">
+                                    <small>Full Membership</small>
                                     Sign Up
                                 </a>
                             </td>
@@ -322,27 +352,6 @@
         <!-- Mobile Pricing Cards (visible on small screens only) -->
         <div class="membergrid-mobile wow animate__animated animate__fadeIn container px-3 pb-5">
 
-            <!-- Full Membership Card -->
-            <div class="mobile-plan-card">
-                <div class="mobile-plan-header" style="background-color: #ffe7ec;">
-                    <span class="plan-name">Full Membership</span>
-                    <span class="plan-price shake" style="color:#fe0840;"><span data-price="full_zero_to_one"></span></span>
-                    <span class="plan-unit" style="color:#fe0840;">/month per child</span>
-                </div>
-                <div class="mobile-plan-row"><span class="row-label">Text Physician</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
-                <div class="mobile-plan-row"><span class="row-label">Virtual Visits</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
-                <div class="mobile-plan-row"><span class="row-label">Office Visits</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
-                <div class="mobile-plan-row"><span class="row-label">Minor Procedures</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
-                <div class="mobile-plan-row"><span class="row-label">Home Visits</span><span>Starting at <span data-price="full_home"></span></span></div>
-                <div class="mobile-plan-row"><span class="row-label">Cancellation Fee*</span><span><span data-price="full_cancelation"></span> / Child</span></div>
-                <div class="mobile-signup-wrap">
-                    <a data-link="full" target="_blank" class="btn btn-primary btn-signup">
-                        <small>Full Membership</small>
-                        Sign Up
-                    </a>
-                </div>
-            </div>
-
             <!-- Text Only Card -->
             <div class="mobile-plan-card">
                 <div class="mobile-plan-header" style="background-color: #fff9e7;">
@@ -355,11 +364,35 @@
                 <div class="mobile-plan-row"><span class="row-label">Office Visits</span><span><span data-price="text_office"></span> / Office Visit</span></div>
                 <div class="mobile-plan-row"><span class="row-label">Minor Procedures</span><img src="/img/redx.png" class="check-img" alt="Not included"></div>
                 <div class="mobile-plan-row"><span class="row-label">Home Visits</span><span>Diagnostics Only</span></div>
+                <div class="mobile-plan-row"><span class="row-label">Paid Annually</span><span><span data-price="text_annual"></span>/yr (15% off)</span></div>
                 <div class="mobile-plan-row"><span class="row-label">Cancellation Fee*</span><span><span data-price="text_cancelation"></span> / Family</span></div>
                 <div class="mobile-plan-row"><span class="row-label">Learn more</span><a href="/textplan/">Text Plan details</a></div>
                 <div class="mobile-signup-wrap">
                     <a data-link="text_plan" target="_blank" class="btn btn-primary btn-signup">
                         <small>Text Member</small>
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+
+            <!-- Full Membership Card -->
+            <div class="mobile-plan-card">
+                <div class="mobile-plan-header featured" style="background-color: #ffe7ec;">
+                    <div class="plan-badge">Most Popular</div>
+                    <span class="plan-name">Full Membership</span>
+                    <span class="plan-price shake" style="color:#fe0840;"><span data-price="full_zero_to_one"></span></span>
+                    <span class="plan-unit" style="color:#fe0840;">/month per child</span>
+                </div>
+                <div class="mobile-plan-row"><span class="row-label">Text Physician</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
+                <div class="mobile-plan-row"><span class="row-label">Virtual Visits</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
+                <div class="mobile-plan-row"><span class="row-label">Office Visits</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
+                <div class="mobile-plan-row"><span class="row-label">Minor Procedures</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
+                <div class="mobile-plan-row"><span class="row-label">Home Visits</span><span>Starting at <span data-price="full_home"></span></span></div>
+                <div class="mobile-plan-row"><span class="row-label">Paid Annually</span><span><span data-price="full_annual"></span>/yr (5% off)</span></div>
+                <div class="mobile-plan-row"><span class="row-label">Cancellation Fee*</span><span><span data-price="full_cancelation"></span> / Child</span></div>
+                <div class="mobile-signup-wrap">
+                    <a data-link="full" target="_blank" class="btn btn-primary btn-signup">
+                        <small>Full Membership</small>
                         Sign Up
                     </a>
                 </div>
@@ -377,7 +410,8 @@
                 <div class="mobile-plan-row"><span class="row-label">Office Visits</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
                 <div class="mobile-plan-row"><span class="row-label">Minor Procedures</span><img src="/img/greencheck.png" class="check-img" alt="Included"></div>
                 <div class="mobile-plan-row"><span class="row-label">Home Visits</span><span>Starting at <span data-price="all_kids_home"></span></span></div>
-                <div class="mobile-plan-row"><span class="row-label">Cancellation Fee*</span><span><span data-price="full_cancelation"></span> / Child</span></div>
+                <div class="mobile-plan-row"><span class="row-label">Paid Annually</span><span><span data-price="all_kids_annual"></span>/yr (pay in advance)</span></div>
+                <div class="mobile-plan-row"><span class="row-label">Cancellation Fee*</span><span><span data-price="full_cancelation"></span> / Family</span></div>
                 <div class="mobile-signup-wrap">
                     <a data-link="full" target="_blank" class="btn btn-primary btn-signup">
                         <small>All the Kids</small>
