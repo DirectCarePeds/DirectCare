@@ -275,25 +275,38 @@
     <style>
         .plan-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
             align-items: stretch;
+            max-width: 88%;
+            margin: 0 auto;
         }
         @media (max-width: 900px) {
-            .plan-row { grid-template-columns: 1fr; }
+            .plan-row { grid-template-columns: 1fr; max-width: 100%; }
         }
         .plan-card {
             background: #fff;
-            border: 1px solid rgba(16, 55, 65, 0.12);
+            border: 2px solid #adb5bd;
             border-radius: 16px;
             padding: 2rem 1.75rem;
             display: flex;
             flex-direction: column;
+            height: 100%;
             box-shadow: 0 2px 10px rgba(16, 55, 65, 0.06);
         }
         .plan-card.plan-featured {
-            border: 2px solid #fe0840;
-            box-shadow: 0 6px 22px rgba(254, 8, 64, 0.14);
+            border: 2px solid #e8536b;
+            box-shadow: 0 6px 22px rgba(232, 83, 107, 0.18);
+        }
+        .plan-card.plan-featured .plan-badge {
+            background: #e8536b;
+        }
+        .plan-card.plan-value {
+            border: 2px solid #103741;
+            box-shadow: 0 2px 10px rgba(16, 55, 65, 0.08);
+        }
+        .plan-card.plan-value .plan-badge {
+            background: #103741;
         }
         .plan-badge {
             display: inline-block;
@@ -311,32 +324,90 @@
         }
         .plan-card .plan-emoji { font-size: 1.6rem; }
         .plan-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
-        .plan-card .plan-desc { font-size: 0.92rem; color: #555; margin-bottom: 0.75rem; }
-        .plan-card .plan-price-line { font-size: 1.9rem; font-weight: 700; color: #fe0840; line-height: 1.1; }
+        .plan-card .plan-desc { font-size: 0.9rem; color: #555; margin-bottom: 0.75rem; }
+        .plan-card .plan-price-line { font-size: 1.9rem; font-weight: 700; color: #e8536b; line-height: 1.1; }
+        .plan-card.plan-value .plan-price-line { color: #103741; }
         .plan-card .plan-price-line .unit { font-size: 0.85rem; font-weight: 600; color: #555; }
-        .plan-card .plan-annual { font-size: 0.85rem; color: #555; margin: 0.25rem 0 0.75rem; }
-        .plan-card ul.plan-list { font-size: 0.88rem; padding-left: 1.1rem; margin-bottom: 0.5rem; }
+        .plan-card .plan-annual { font-size: 0.85rem; color: #3f7d5c; font-weight: 600; margin: 0.25rem 0 0.75rem; }
+        .plan-card ul.plan-list { font-size: 0.9rem; padding-left: 1.1rem; margin-bottom: 0.5rem; }
         .plan-card ul.plan-list li { margin-bottom: 0.25rem; }
+        .plan-card p.plan-fact { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .plan-card ul.plan-list-plain { list-style: none; padding-left: 0; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .plan-card ul.plan-list-plain li { margin-bottom: 0.35rem; }
         .plan-card h6.plan-subhead { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: #777; margin: 0.75rem 0 0.4rem; }
-        .plan-card .plan-fine { font-size: 0.75rem; color: #777; margin-top: auto; padding-top: 0.5rem; }
+        .plan-card .plan-fine { font-size: 0.68rem; color: #6c757d; padding-top: 0.5rem; text-align: center; }
         .plan-card .plan-btn {
-            margin-top: 1rem;
+            margin-top: auto;
             text-align: center;
             padding: 0.7rem 1rem;
             border-radius: 999px;
             font-weight: 700;
         }
-
-        /* Photo bridge section (between CTA and pricing) */
-        .photo-bridge {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            max-width: 440px;
-            aspect-ratio: 1 / 1;
-            margin: 0 auto;
+        .plan-card.plan-value .plan-btn.btn-primary {
+            background-color: #103741;
+            border-color: #103741;
         }
-        .photo-bridge img {
+        .plan-card.plan-value .plan-btn.btn-primary:hover {
+            background-color: #0b262d;
+            border-color: #0b262d;
+        }
+        .plan-card.plan-featured .plan-btn.btn-primary {
+            background-color: #e8536b;
+            border-color: #e8536b;
+        }
+        .plan-card.plan-featured .plan-btn.btn-primary:hover {
+            background-color: #d63f57;
+            border-color: #d63f57;
+        }
+        .plan-card .family-ribbon {
+            text-align: center;
+            margin: 0.75rem 0;
+        }
+        .plan-card .family-ribbon hr {
+            border: none;
+            border-top: 1px solid rgba(16, 55, 65, 0.15);
+            margin: 0.5rem 0;
+        }
+        .plan-card .family-ribbon-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #103741;
+            margin: 0.4rem 0 0.15rem;
+        }
+        .plan-card .family-ribbon-title .emoji { font-size: 1.1em; }
+        .plan-card .family-ribbon-sub {
+            font-size: 0.85rem;
+            color: #555;
+            margin: 0;
+        }
+        .plan-card .family-ribbon-sub strong { color: #e8536b; }
+
+        /* Photo, sits as the first item in the pricing row */
+        .plan-photo {
+            border-radius: 12px;
+            overflow: hidden;
+            width: 45%;
+            aspect-ratio: 1 / 1;
+            margin: 0.5rem auto 1rem;
+        }
+        .plan-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+        }
+
+        /* Standalone photo between the CTA and the pricing section */
+        .cta-photo {
+            width: 440px;
+            max-width: 85%;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto -3rem;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .cta-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -376,7 +447,7 @@
                                 <div class="col-10 col-lg-8" style="padding-left: 50px;">
                                     <h1 class="display-2 text-white animated slideInDown mb-4">Modern Pediatrics</h1>
                                     <p class="fs-5 fw-medium text-white mb-4 pb-2" style="max-width: 650px;">Pediatrics Reimagined: Real relationships, fast answers, less stress. Utah's first pediatrics text service.</p>
-                                    <a data-link="meet_and_greet" target="_blank" class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3 animated slideInLeft"><h4 class="button">Schedule a Free Meet & Greet</h4></a>       
+                                    <a data-link="meet_and_greet" target="_blank" class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3 animated slideInLeft"><span class="button button-md">Schedule a Free Meet & Greet</span></a>       
                                 </div>
                             </div>
                         </div>
@@ -391,9 +462,9 @@
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8" style="padding-left: 50px;">
-                                    <h5 class="display-2 text-white animated slideInDown mb-4">Healthcare Made Simple</h5>
+                                    <h2 class="display-2 text-white animated slideInDown mb-4">Healthcare Made Simple</h2>
                                     <p class="fs-5 fw-medium text-white mb-4 pb-2" style="max-width: 650px;">From quick texts to at home diagnostics, we make healthcare easy, affordable, and stress-free for Utah families.</p>
-                                    <a href="/signup/" class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3 animated slideInLeft"><h4 class="button">Sign Up Now</h4></a>
+                                    <a href="/signup/" class="btn btn-primary rounded-pill py-sm-2 px-sm-4 me-3 animated slideInLeft"><span class="button button-md">Sign Up Now</span></a>
                                 </div>
                             </div>
                         </div>
@@ -407,50 +478,50 @@
         <div class="container-xxl py-4">
             <div class="container" style="max-width: 500px;">
                 <div class="text-center mx-auto mb-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Text-First Pediatrics</h1>
+                    <h2 class="mb-3">Text-First Pediatrics</h2>
                     <p>Skip the germ-filled waiting rooms. Text directly with a real pediatrician for answers and at home diagnostics anywhere in Utah. You can schedule a virtual, clinic, dental visit or home visit via text when you need one. Get individualized care, trusted relationships, and service that saves your family time and money. 
                     </p>
                 </div>
 
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button" style="margin-top: 20px;"><h3 class="button">Text a Doctor Now</h3></a>
+                    <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button" style="margin-top: 20px;"><span class="button button-lg">Text a Doctor Now</span></a>
                 </div>
-            </div>
-        </div>
 
-        <!-- Photo Bridge Start -->
-        <div class="container-xxl pb-5">
-            <div class="container">
-                <div class="photo-bridge wow fadeIn" data-wow-delay="0.1s">
+                <div class="cta-photo wow fadeIn" data-wow-delay="0.1s">
                     <img src="/img/child-dressed-doctor-membership-plans.jpg" alt="Child dressed as a doctor with a stethoscope">
                 </div>
             </div>
         </div>
-        <!-- Photo Bridge End -->
 
         <!-- Membership Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <h2 class="text-center mb-4">How much does it cost?</h2>
+                <h2 class="text-center mb-2">Choose Your Membership</h2>
+                <p class="text-center mb-4">Simple, transparent pricing with no insurance required.</p>
 
                 <div class="plan-row">
-                    <!-- Text-Only Plan -->
-                    <div class="plan-card wow fadeIn" data-wow-delay="0.1s">
+                    <!-- Text Membership -->
+                    <div class="plan-card plan-value wow fadeIn" data-wow-delay="0.1s">
+                        <br>
                         <div class="plan-emoji">💬</div>
-                        <h3>Text-Only Plan</h3>
-                        <p class="plan-desc">Unlimited <a href="/textplan/">text/email access</a> to a pediatrician & pediatric dentist for all the kids in the family.</p>
+                        <h3>Text Membership</h3>
+                        <p class="plan-desc">Text a pediatrician. Pay only when you need a visit.</p>
                         <div class="plan-price-line"><span data-price="text"></span><span class="unit">/month for all kids</span></div>
-                        <p class="plan-annual">or <span data-price="text_annual_monthly"></span>/month paid annually (15% off)</p>
-                        <h6 class="plan-subhead">Visit Costs</h6>
-                        <ul class="plan-list">
-                            <li>Orders: <span data-price="text_order"></span>/prescription, imaging or lab order*</li>
-                            <li>Virtual Visit: <span data-price="text_virtual"></span>/consult*</li>
-                            <li>Office visits: <span data-price="text_office"></span>/visit</li>
-                            <li>At-Home Diagnostics: starting at <span data-price="text_home_diagnostic"></span>/visit</li>
-                            <li>Pediatric Dental Cleaning & Xrays: <span data-price="dental_cleaning"></span>/visit</li>
+                        <p class="plan-annual">🟢 Save 15% with annual billing</p>
+                        <h6 class="plan-subhead">Need an Appointment?</h6>
+                        <ul class="plan-list-plain">
+                            <li>🏥 <strong>Office Visit</strong> — <span data-price="text_office"></span></li>
+                            <li>💻 <strong>Video Visit</strong> — <span data-price="text_virtual"></span></li>
+                            <li>💊 <strong>Prescriptions</strong> — <span data-price="text_order"></span></li>
+                            <li>🧪 <strong>Lab & Imaging Orders</strong> — <span data-price="text_order"></span></li>
                         </ul>
-                        <p class="plan-fine">*Virtual visits are 15 mins on phone or video call. No registration fee. <span data-price="text_cancelation"></span> cancelation fee if canceled within 12 months.</p>
-                        <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Text Member Sign Up</a>
+                        <!--
+                        <div class="plan-photo">
+                            <img src="/img/child-dressed-doctor-membership-plans.jpg" alt="Child dressed as a doctor with a stethoscope">
+                        </div>
+                        -->
+                        <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Start Text Member</a>
+                        <p class="plan-fine">No registration fee. <span data-price="text_cancelation"></span> cancelation fee if canceled within 12 months.</p>
                     </div>
 
                     <!-- Full Membership (featured) -->
@@ -458,27 +529,27 @@
                         <div class="plan-badge">Most Popular</div>
                         <div class="plan-emoji">👶</div>
                         <h3>Full Membership</h3>
-                        <p class="plan-desc">Unlimited <a href="/services/">clinic visits</a>, well child checks, prescriptions, and orders. Bonus two dental cleanings w/ xrays and discounts on fillings.</p>
+                        <p class="plan-desc">Families looking for comprehensive and holistic pediatric primary care through texting and visits.</p>
                         <div class="plan-price-line"><span data-price="full_zero_to_one"></span><span class="unit">/month per child</span></div>
-                        <p class="plan-annual">or <span data-price="full_annual"></span>/year paid annually (5% off)</p>
-                        <ul class="plan-list">
-                            <li>Home visits starting at <span data-price="full_home"></span> within 15 mins of service area</li>
+                        <p class="plan-annual">🟢 Save 5% with annual billing</p>
+                        <h6 class="plan-subhead">Everything Included</h6>
+                        <ul class="plan-list-plain">
+                            <li>🏥 Office visits</li>
+                            <li>💬 Texting</li>
+                            <li>💊 Prescriptions</li>
+                            <li>🧪 Lab & imaging orders</li>
+                            <li>🦷 Two dental cleanings with x-rays</li>
+                            <li>🏠 <strong>Home Visits</strong> — Starting at <span data-price="full_home"></span></li>
                         </ul>
-                        <p class="plan-fine">No registration fee. <span data-price="full_cancelation"></span> cancelation fee if canceled within 12 months.</p>
-                        <a class="btn btn-primary plan-btn" data-link="full" target="_blank">Full Membership Sign Up</a>
-                    </div>
 
-                    <!-- All the Kids -->
-                    <div class="plan-card wow fadeIn" data-wow-delay="0.5s">
-                        <div class="plan-emoji">👨‍👩‍👧‍👦</div>
-                        <h3>All the Kids</h3>
-                        <p class="plan-desc">Full membership benefits extended to every child in the family, for one flat monthly rate.</p>
-                        <div class="plan-price-line"><span data-price="all_kids"></span><span class="unit">/month for all kids</span></div>
-                        <ul class="plan-list">
-                            <li>Home visits starting at <span data-price="all_kids_home"></span></li>
-                        </ul>
+                        <div class="family-ribbon">
+                            <hr>
+                            <p class="family-ribbon-title"><span class="emoji">👨‍👩‍👧‍👦</span> Large Family Savings</p>
+                            <p class="family-ribbon-sub">Never pay more than <strong><span data-price="all_kids"></span>/month</strong></p>
+                            <hr>
+                        </div>
+                        <a class="btn btn-primary plan-btn" data-link="full" target="_blank">Start Full Membership</a>
                         <p class="plan-fine">No registration fee. <span data-price="full_cancelation"></span> cancelation fee if canceled within 12 months.</p>
-                        <a class="btn btn-primary plan-btn" data-link="full" target="_blank">All the Kids Sign Up</a>
                     </div>
                 </div>
             </div>
@@ -491,7 +562,7 @@
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <h1 class="mb-4">Direct Access, Real Care</h1> 
+                        <h2 class="mb-4">Direct Access, Real Care</h2> 
                         <p>
                             Parents are tired of waiting weeks for appointments and leaving with more questions than answers. Healthcare shouldn’t be this hard.
                         </p>
@@ -503,7 +574,7 @@
                         </p>
                         <div class="row g-4 align-items-center">
                             <div class="col-sm-6">
-                                <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInRight" onclick="redirectToMeetGreetScheduler()"><h4 class="button">Free Meet & Greet</h4></a>
+                                <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInRight" onclick="redirectToMeetGreetScheduler()"><span class="button button-md">Free Meet & Greet</span></a>
                             </div>
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center">
@@ -544,11 +615,11 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Still have questions?</h1>
+                    <h2 class="mb-3">Still have questions?</h2>
                     <p>Sign up for a free meet and greet to get all your questions answered!</p>
                 </div>
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <a data-link="meet_and_greet" class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft" style="margin-top: 20px;"><h4 class="button">Schedule a Meet & Greet</h4></a>
+                    <a data-link="meet_and_greet" class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft" style="margin-top: 20px;"><span class="button button-md">Schedule a Meet & Greet</span></a>
                 </div>
                 <div class="text-center wow fadeInUp" data-wow-delay="0.2s"> <!-- Added wow class and data-wow-delay -->
                     <img class="img-fluid rounded" 
@@ -566,7 +637,7 @@
         <div class="container-xxl py-1">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">What Families Say about Direct Care!</h1>
+                    <h2 class="mb-3">What Families Say about Direct Care!</h2>
                     <p>Parents value direct primary care for its personalized, convenient approach to primary care.</p>
                 </div>
                 
@@ -576,7 +647,7 @@
         </div>
 
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button" style="margin-top: 60px;"><h3 class="button">Text a Doctor Now</h3></a>
+            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button" style="margin-top: 60px;"><span class="button button-lg">Text a Doctor Now</span></a>
         </div>
 
         <!--Cookie Bot CMP Compliance -->

@@ -109,8 +109,9 @@ h6,
 h1.button,
 h2.button,
 h3.button,
-h4.button {
-    color: #f1f1f1; 
+h4.button,
+span.button {
+    color: #f1f1f1;
     display: inline-block;
     font-family: 'Quicksand';
     font-weight: 700;
@@ -118,11 +119,16 @@ h4.button {
 
 h5.button,
 h6.button {
-    color: #f1f1f1; 
+    color: #f1f1f1;
     display: inline-block;
     font-family: 'Quicksand';
     font-weight: 600;
 }
+
+/* Explicit sizes for span.button, replacing the h3/h4 tags previously
+   used only to borrow their default font-size for button text. */
+span.button.button-lg { font-size: 1.75rem; }
+span.button.button-md { font-size: 1.5rem; }
 
 
 .font-secondary {
