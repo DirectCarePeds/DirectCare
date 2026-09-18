@@ -106,6 +106,12 @@
            - FAQ answer: "How much does it cost?"       <- full_zero_to_one, text, all_kids
            - FAQ answer: "Does Dr. Hubbard do home visits?" <- full_home
          (Last checked against /prices.json: all values above matched.)
+
+         ALSO CHECK PERIODICALLY: the aggregateRating/review block
+         below is manually entered from the Google Business Profile
+         rating (currently 5.0 stars, 18 reviews) and the named
+         testimonials in testimonial.html. If either changes, update
+         both here and there so they stay honest and in sync.
     ============================================================ -->
     <script type="application/ld+json">
     {
@@ -168,7 +174,7 @@
                 "@type": "Offer",
                 "name": "Full Membership",
                 "description": "Unlimited clinic visits, well-child checks, prescriptions, and orders for one child. Includes two dental cleanings with X-rays annually.",
-                "price": "125",
+                "price": "105",
                 "priceCurrency": "USD",
                 "unitText": "per month per child"
               },
@@ -184,7 +190,7 @@
                 "@type": "Offer",
                 "name": "All the Kids",
                 "description": "Full membership benefits extended to all children in the family at one flat monthly rate.",
-                "price": "350",
+                "price": "300",
                 "priceCurrency": "USD",
                 "unitText": "per month for all kids"
               }
@@ -216,6 +222,52 @@
               "@type": "MedicalTherapy",
               "name": "At-Home Diagnostics",
               "description": "Home testing for strep, UTI, RSV, flu, and measles throughout Utah. Results within 24 hours."
+            }
+          ],
+
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "bestRating": "5",
+            "reviewCount": "18"
+          },
+
+          "review": [
+            {
+              "@type": "Review",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Aubrey" },
+              "reviewBody": "Dallin is so great with kids! We had a little accident where one of my kids needed stitches. The doctor came over to our place and took care of it easily. It was SO MUCH BETTER than going to urgent care. Faster. Cheaper. Absolutely the way to go!"
+            },
+            {
+              "@type": "Review",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "E. Porter" },
+              "reviewBody": "Dr. Hubbard is an incredible and caring pediatrician. My son was very sick with a high fever and couldn't eat. So he came to the hotel we were staying at and did a check-up on my son. He prescribed medication that made my son feel better in just a few days."
+            },
+            {
+              "@type": "Review",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Amanda, Aspen ABA Therapy" },
+              "reviewBody": "Dallin Hubbard has been helping our family (note I didn't say \"seeing\") for awhile now. He doesn't just \"see\" patients. Dr. Hubbard knows our whole family, remembers details, respects our little one's stranger danger, and brings his incredible expertise to every situation."
+            },
+            {
+              "@type": "Review",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Royce Porter, OTR/L" },
+              "reviewBody": "Dr. Hubbard has gone above and beyond to help us with solutions for my family. He treats us so well and remembers information from each communication. The continuity of care plus the compassion he shares makes him a great choice that I use and will continue to recommend to my clients as well."
+            },
+            {
+              "@type": "Review",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Zach & Emily, Utah Mechanical Systems" },
+              "reviewBody": "I absolutely LOVE working with Dr. Hubbard at Direct Care Pediatrics. When I need something for the boys he is so fast to get it taken care of for me. Dr. Hubbard is all around a very generous man who cares about the safety of children and parents being empowered to make the choices that are right for them."
+            },
+            {
+              "@type": "Review",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "author": { "@type": "Person", "name": "Andrea Pearson" },
+              "reviewBody": "Just wanted to give a shout-out to Dr. Dallin Hubbard from Direct Care Pediatrics. We're on his unlimited text plan and it's been such a blessing. Our six-year-old broke his leg Monday evening. We don't currently have insurance or an income, and Dr. Hubbard made an incredibly stressful experience as good as possible."
             }
           ]
         },
