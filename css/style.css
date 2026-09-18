@@ -869,10 +869,12 @@ span.button.button-md { font-size: 1.5rem; }
 }
 
 .post-link img {
-    width: 250px;
-    height: auto;
-    object-fit: cover; /* keeps aspect ratio */
+    width: 260px;
+    height: 260px;
+    object-fit: cover; /* crops to a consistent square regardless of the source image's orientation */
+    object-position: center 15%;
     border-radius: 10px;
+    flex-shrink: 0;
 }
 
 .post-link h2{
