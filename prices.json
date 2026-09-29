@@ -11,14 +11,16 @@
     "text_order": "$50",
     "text_virtual": "$100",
     "text_office": "$200",
-    "text_home": "$0.",
     "text_home_diagnostic": "$100",
     "all_kids": "$300",
     "all_kids_home": "$100",
     "all_kids_annual": "$3600",
     "travel": "$50",
     "full_annual": "$1440",
+    "full_annual_monthly": "$120",
+    "full_annual_discount": "20%",
     "text_annual": "$360",
-    "text_annual_monthly": "$75",
-    "dental_cleaning": "$159"
+    "text_annual_monthly": "$30",
+    "text_annual_discount": "60%",
+    "text_dental_cleaning": "$160"
 }

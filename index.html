@@ -98,14 +98,14 @@
 
          CHECKLIST: whenever a price changes in /prices.json, also
          manually update it here, in every one of these spots:
-           - priceRange, below                        <- text, all_kids
+           - priceRange, below                        <- text_annual_monthly, all_kids
            - "Full Membership" offer price             <- full_zero_to_one
            - "Text-Only Plan" offer price               <- text
            - "All the Kids" offer price                 <- all_kids
            - "Pediatric Home Visits" description        <- full_home
-           - FAQ answer: "How much does it cost?"       <- full_zero_to_one, text, all_kids
+           - FAQ answer: "How much does it cost?"       <- full_zero_to_one, text_annual_monthly, all_kids
            - FAQ answer: "Does Dr. Hubbard do home visits?" <- full_home
-         (Last checked against /prices.json: all values above matched.)
+         (Last checked against /prices.json on 2026-09-28: all values above matched.)
 
          ALSO CHECK PERIODICALLY: the aggregateRating/review block
          below is manually entered from the Google Business Profile
@@ -174,15 +174,15 @@
                 "@type": "Offer",
                 "name": "Full Membership",
                 "description": "Unlimited clinic visits, well-child checks, prescriptions, and orders for one child. Includes two dental cleanings with X-rays annually.",
-                "price": "105",
+                "price": "150",
                 "priceCurrency": "USD",
                 "unitText": "per month per child"
               },
               {
                 "@type": "Offer",
                 "name": "Text-Only Plan",
-                "description": "Unlimited text and email access to a pediatrician and pediatric dentist for all children in the family. Virtual, office, and home visits available at additional cost.",
-                "price": "30",
+                "description": "Unlimited text and email access to a pediatrician and pediatric dentist for all children in the family. Virtual and office visits available at additional cost.",
+                "price": "75",
                 "priceCurrency": "USD",
                 "unitText": "per month for all kids"
               },
@@ -289,7 +289,7 @@
               "name": "How much does Direct Care Pediatrics cost?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Direct Care Pediatrics offers three plans: Full Membership at $105/month per child (unlimited visits), Text-Only Plan at $30/month for all kids in the family (text access plus pay-per-visit options), and All the Kids at $300/month for all children with full membership benefits. There is no registration fee."
+                "text": "Direct Care Pediatrics offers three plans: Full Membership at $150/month per child (unlimited visits), Text-Only Plan starting at $30/month for all kids in the family (text access plus pay-per-visit options), and All the Kids at $300/month for all children with full membership benefits. There is no registration fee."
               }
             },
             {
@@ -325,117 +325,246 @@
 
     <!-- Pricing Cards Styles (homepage membership section) -->
     <style>
+        /* Site colors: navy #103741, pink #e8536b, savings green #2f9e5f */
         .plan-row {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3.5rem;
-            align-items: stretch;
-            max-width: 72%;
-            margin: 0 auto;
-        }
-        @media (max-width: 900px) {
-            .plan-row { grid-template-columns: 1fr; max-width: 100%; }
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 2.5rem;
+            row-gap: 0;
+            max-width: 1000px;
+            margin: 1.5rem auto 0;
         }
         .plan-card {
-            background: #fff;
-            border: 2px solid #adb5bd;
-            border-radius: 16px;
-            padding: 2rem 1.75rem;
+            position: relative;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            box-shadow: 0 2px 10px rgba(16, 55, 65, 0.06);
+            padding: 2.25rem 2rem 1.5rem;
+            border-radius: 20px;
+            background: #fff;
+            color: #103741;
+        }
+        /* Line the two cards up row-by-row (title, prices, button...) in browsers that support it */
+        @supports (grid-template-rows: subgrid) {
+            .plan-card {
+                display: grid;
+                grid-row: span 7;
+                grid-template-rows: subgrid;
+                row-gap: 0;
+            }
+        }
+        .plan-card.plan-value {
+            border: 2px solid rgba(16, 55, 65, 0.45);
+            background:
+                radial-gradient(circle at 100% 0%, rgba(47, 158, 95, 0.10) 0, rgba(47, 158, 95, 0) 38%),
+                linear-gradient(180deg, #f3f8f9 0%, #fff 55%);
+            box-shadow: 0 10px 30px rgba(16, 55, 65, 0.08);
         }
         .plan-card.plan-featured {
             border: 2px solid #e8536b;
-            box-shadow: 0 6px 22px rgba(232, 83, 107, 0.18);
+            background:
+                radial-gradient(circle at 100% 0%, rgba(232, 83, 107, 0.12) 0, rgba(232, 83, 107, 0) 38%),
+                linear-gradient(180deg, #fff4f6 0%, #fff 55%);
+            box-shadow: 0 12px 34px rgba(232, 83, 107, 0.16);
         }
-        .plan-card.plan-featured .plan-badge {
-            background: #e8536b;
+        @media (max-width: 900px) {
+            .plan-row { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+            .plan-card + .plan-card { margin-top: 3rem; }
         }
-        .plan-card.plan-value {
-            border: 2px solid #103741;
-            box-shadow: 0 2px 10px rgba(16, 55, 65, 0.08);
+        @media (max-width: 480px) {
+            .plan-card { padding: 2rem 1.25rem 1.25rem; }
         }
-        .plan-card.plan-value .plan-badge {
-            background: #103741;
-        }
+
         .plan-badge {
-            display: inline-block;
-            align-self: flex-start;
-            background: #fe0840;
+            position: absolute;
+            top: 0;
+            left: 1.75rem;
+            transform: translateY(-50%);
+            background: #e8536b;
             color: #fff;
             font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            padding: 4px 14px;
+            padding: 6px 16px;
             border-radius: 999px;
             white-space: nowrap;
-            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 12px rgba(232, 83, 107, 0.35);
         }
-        .plan-card .plan-emoji { font-size: 1.6rem; }
-        .plan-card h3 { font-size: 1.25rem; font-weight: 700; margin: 0.25rem 0 0.5rem; }
-        .plan-card .plan-desc { font-size: 0.9rem; color: #555; margin-bottom: 0.75rem; }
-        .plan-card .plan-price-line { font-size: 1.9rem; font-weight: 700; color: #e8536b; line-height: 1.1; }
-        .plan-card.plan-value .plan-price-line { color: #103741; }
-        .plan-card .plan-price-line .unit { font-size: 0.85rem; font-weight: 600; color: #555; }
-        .plan-card .plan-annual { font-size: 0.85rem; color: #3f7d5c; font-weight: 600; margin: 0.25rem 0 0.75rem; }
-        .plan-card ul.plan-list { font-size: 0.9rem; padding-left: 1.1rem; margin-bottom: 0.5rem; }
-        .plan-card ul.plan-list li { margin-bottom: 0.25rem; }
-        .plan-card p.plan-fact { font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .plan-card ul.plan-list-plain { list-style: none; padding-left: 0; font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .plan-card ul.plan-list-plain li { margin-bottom: 0.35rem; }
-        .plan-card h6.plan-subhead { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: #777; margin: 0.75rem 0 0.4rem; }
-        .plan-card .plan-fine { font-size: 0.68rem; color: #6c757d; padding-top: 0.5rem; text-align: center; }
-        .plan-card .plan-btn {
-            margin-top: auto;
-            align-self: center;
-            width: 100%;
-            max-width: 260px;
-            text-align: center;
-            padding: 1rem 1rem;
-            border-radius: 999px;
-            font-weight: 700;
-        }
-        .plan-card.plan-value .plan-btn.btn-primary {
-            background-color: #103741;
-            border-color: #103741;
-        }
-        .plan-card.plan-value .plan-btn.btn-primary:hover {
-            background-color: #0b262d;
-            border-color: #0b262d;
-        }
-        .plan-card.plan-featured .plan-btn.btn-primary {
-            background-color: #e8536b;
-            border-color: #e8536b;
-        }
-        .plan-card.plan-featured .plan-btn.btn-primary:hover {
-            background-color: #d63f57;
-            border-color: #d63f57;
-        }
-        .plan-card .family-ribbon {
-            text-align: center;
-            margin: 0.75rem 0;
-        }
-        .plan-card .family-ribbon hr {
-            border: none;
-            border-top: 1px solid rgba(16, 55, 65, 0.15);
-            margin: 0.5rem 0;
-        }
-        .plan-card .family-ribbon-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #103741;
-            margin: 0.4rem 0 0.15rem;
-        }
-        .plan-card .family-ribbon-title .emoji { font-size: 1.1em; }
-        .plan-card .family-ribbon-sub {
-            font-size: 0.85rem;
-            color: #555;
+
+        .plan-card .plan-icon { font-size: 2.6rem; line-height: 1; margin-bottom: 0.6rem; }
+        .plan-card h3 { font-size: 1.75rem; font-weight: 800; color: #103741; margin: 0 0 0.4rem; }
+        .plan-card .plan-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #4a5b61;
             margin: 0;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(16, 55, 65, 0.12);
         }
+
+        .plan-card .plan-prices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+            padding: 1.1rem 0 1.25rem;
+        }
+        .plan-card .price-block-annual {
+            border-left: 1px solid rgba(16, 55, 65, 0.15);
+            padding-left: 1.25rem;
+        }
+        .plan-card .price-amount { font-size: 2.6rem; font-weight: 800; line-height: 1; color: #103741; white-space: nowrap; }
+        .plan-card .price-block-annual .price-amount { color: #2f9e5f; }
+        .plan-card .price-per { font-size: 1rem; font-weight: 700; margin-left: 2px; }
+        .plan-card .price-note { font-size: 0.9rem; color: #4a5b61; margin-top: 0.35rem; }
+        .plan-card .price-fine { font-size: 0.78rem; color: #6c757d; margin-top: 0.15rem; }
+        .plan-card .save-pill {
+            display: inline-block;
+            margin-left: 0.25rem;
+            padding: 1px 8px;
+            border-radius: 999px;
+            background: rgba(47, 158, 95, 0.12);
+            color: #23794a;
+            font-weight: 700;
+            font-size: 0.72rem;
+        }
+        @media (max-width: 480px) {
+            .plan-card .plan-prices { grid-template-columns: 1fr; row-gap: 1rem; }
+            .plan-card .price-block-annual { border-left: none; padding-left: 0; border-top: 1px solid rgba(16, 55, 65, 0.15); padding-top: 1rem; }
+        }
+
+        .plan-card .plan-body { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem; }
+        .plan-card .plan-list-box {
+            flex: 1 0 auto;
+            border-radius: 16px;
+            padding: 1rem 1.1rem 0.5rem;
+        }
+        .plan-card.plan-value .plan-list-box { background: rgba(16, 55, 65, 0.045); }
+        .plan-card.plan-featured .plan-list-box { background: rgba(232, 83, 107, 0.05); }
+        .plan-card h6.plan-subhead {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin: 0 0 0.5rem;
+        }
+        .plan-card.plan-value h6.plan-subhead { color: #103741; }
+        .plan-card.plan-featured h6.plan-subhead { color: #e8536b; }
+        .plan-card ul.plan-items { list-style: none; padding: 0; margin: 0; }
+        .plan-card ul.plan-items li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #243b42;
+            border-bottom: 1px solid rgba(16, 55, 65, 0.08);
+        }
+        .plan-card ul.plan-items li:last-child { border-bottom: none; }
+        .plan-card .plan-item-label { flex: 1; }
+        .plan-card .plan-item-price { font-weight: 600; color: #103741; font-variant-numeric: tabular-nums; }
+        .plan-card .plan-chip {
+            flex: 0 0 auto;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .plan-card .chip-blue   { background: #e7eefc; }
+        .plan-card .chip-pink   { background: #fde8ec; }
+        .plan-card .chip-green  { background: #e3f5ec; }
+        .plan-card .chip-purple { background: #eeeafb; }
+        .plan-card .chip-orange { background: #fdeee2; }
+
+        .plan-card .family-ribbon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0.9rem;
+            padding: 0.85rem 1.1rem;
+            border-radius: 14px;
+            background: rgba(232, 83, 107, 0.09);
+        }
+        .plan-card .family-ribbon-icon { font-size: 2rem; line-height: 1; }
+        .plan-card .family-ribbon-title { font-size: 1.05rem; font-weight: 800; color: #e8536b; margin: 0; }
+        .plan-card .family-ribbon-sub { font-size: 0.88rem; color: #4a5b61; margin: 0; }
         .plan-card .family-ribbon-sub strong { color: #e8536b; }
+
+        .plan-card .plan-btn {
+            align-self: end;
+            width: 100%;
+            padding: 0.95rem 1rem;
+            border-radius: 999px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: auto;
+        }
+        .plan-card.plan-value .plan-btn.btn-primary { background-color: #103741; border-color: #103741; }
+        .plan-card.plan-value .plan-btn.btn-primary:hover { background-color: #0b262d; border-color: #0b262d; }
+        .plan-card.plan-featured .plan-btn.btn-primary { background-color: #e8536b; border-color: #e8536b; }
+        .plan-card.plan-featured .plan-btn.btn-primary:hover { background-color: #d63f57; border-color: #d63f57; }
+        .plan-card .plan-fine { font-size: 0.78rem; color: #6c757d; text-align: center; margin: 0.75rem 0 0; }
+        .plan-card .plan-fine-item { white-space: nowrap; }
+
+        /* Bottom "Text a Doctor Now" button: yellow border, glow, and a light sweep across it */
+        .btn.btn-shine {
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #ffd228 !important;
+            animation: btnShineGlow 2.4s ease-in-out infinite;
+        }
+        .btn-shine::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-20deg);
+            animation: btnShineSweep 2.4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes btnShineGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 210, 40, 0.0); }
+            50%      { box-shadow: 0 0 18px 4px rgba(255, 210, 40, 0.65); }
+        }
+        @keyframes btnShineSweep {
+            0%   { left: -75%; }
+            60%  { left: 125%; }
+            100% { left: 125%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .btn.btn-shine, .btn-shine::after { animation: none; }
+        }
+
+        /* "Not ready to commit?" email signup under the pricing cards */
+        .email-signup {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            padding: 2.25rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 0% 100%, rgba(47, 158, 95, 0.08) 0, rgba(47, 158, 95, 0) 35%),
+                linear-gradient(180deg, #fff4f6 0%, #fdf7f4 100%);
+            border: 1px solid rgba(232, 83, 107, 0.18);
+        }
+        .email-signup h2 { font-size: 1.9rem; font-weight: 800; color: #103741; margin: 0 0 0.4rem; }
+        .email-signup h2 .accent { color: #e8536b; }
+        .email-signup-sub { font-size: 1rem; color: #4a5b61; margin: 0 auto 1.25rem; max-width: 520px; }
+        .email-signup-form { max-width: 560px; margin: 0 auto; }
+        .email-signup-fine { font-size: 0.78rem; color: #6c757d; margin: 0.75rem 0 0; }
+        /* Stays hidden until the GoHighLevel form embed is pasted in */
+        .email-signup:not(:has(iframe)) { display: none; }
+        @media (max-width: 480px) {
+            .email-signup { padding: 1.75rem 1.25rem; }
+            .email-signup h2 { font-size: 1.5rem; }
+        }
 
         /* Photo, sits as the first item in the pricing row */
         .plan-photo {
@@ -487,6 +616,29 @@
         .fadeInUpShake {
             animation-name: fadeInUpShake;
             animation-duration: 1.6s;
+        }
+
+        /* After the Full Membership card finishes shaking, pulse its button (class added by script at bottom of page) */
+        /* One loop = pink pulse, bright yellow pulse, short rest */
+        @keyframes planBtnPulse {
+            0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(232, 83, 107, 0.55); }
+            15%  { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(232, 83, 107, 0); }
+            30%  { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255, 210, 40, 0); }
+            32%  { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255, 210, 40, 0.9); }
+            50%  { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(255, 210, 40, 0), 0 0 22px 4px rgba(255, 210, 40, 0.6); }
+            65%  { transform: scale(1);    box-shadow: 0 0 0 0 rgba(255, 210, 40, 0), 0 0 0 0 rgba(255, 210, 40, 0); }
+            100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(232, 83, 107, 0), 0 0 0 0 rgba(255, 210, 40, 0); }
+        }
+        .plan-card .plan-btn.plan-btn-highlight {
+            animation: planBtnPulse 3.2s ease-out infinite;
+        }
+        /* Hold still while someone is about to click */
+        .plan-card .plan-btn.plan-btn-highlight:hover,
+        .plan-card .plan-btn.plan-btn-highlight:focus-visible {
+            animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .plan-card .plan-btn.plan-btn-highlight { animation: none; }
         }
     </style>
 
@@ -573,59 +725,94 @@
                 <h2 class="text-center mb-2">Choose Your Membership</h2>
                 <p class="text-center mb-5">Simple, transparent pricing with no insurance required.</p>
 
+                <!-- Both cards have the same 7 rows (icon, title, desc, prices, body, button, fine print)
+                     so they line up side by side. Keep that order if you add anything. -->
                 <div class="plan-row">
                     <!-- Text Membership -->
                     <div class="plan-card plan-value wow fadeInUp" data-wow-delay="0.1s">
-                        <br>
-                        <div class="plan-emoji">💬</div>
+                        <div class="plan-icon" aria-hidden="true">💬</div>
                         <h3>Text Membership</h3>
-                        <p class="plan-desc">Text a pediatrician. Pay when you need a visit.</p>
-                        <div class="plan-price-line"><span data-price="text"></span><span class="unit">/month for all kids</span></div>
-                        <p class="plan-annual">🟢 Save 60% with annual billing</p>
-                        <h6 class="plan-subhead">Need an Appointment?</h6>
-                        <ul class="plan-list-plain">
-                            <li>🏥 <strong>Office Visit</strong> — <span data-price="text_office"></span></li>
-                            <li>💻 <strong>Video Visit</strong> — <span data-price="text_virtual"></span></li>
-                            <li>💊 <strong>Prescriptions</strong> — <span data-price="text_order"></span></li>
-                            <li>🧪 <strong>Lab & Imaging Orders</strong> — <span data-price="text_order"></span></li>
-                        </ul>
-                        <!--
-                        <div class="plan-photo">
-                            <img src="/img/child-dressed-doctor-membership-plans.jpg" alt="Child dressed as a doctor with a stethoscope">
+                        <p class="plan-desc">Text a pediatrician about all your kids’ health. Pay when you need a visit or order.</p>
+                        <div class="plan-prices">
+                            <div class="price-block">
+                                <div class="price-amount"><span data-price="text"></span><span class="price-per">/month</span></div>
+                                <div class="price-note">for all kids</div>
+                            </div>
+                            <div class="price-block price-block-annual">
+                                <div class="price-amount"><span data-price="text_annual_monthly"></span><span class="price-per">/month</span></div>
+                                <div class="price-note">with annual commitment</div>
+                                <div class="price-fine">(<span data-price="text_annual"></span>/year) <span class="save-pill">Save <span data-price="text_annual_discount"></span></span></div>
+                            </div>
                         </div>
-                        -->
-                        <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Start Text Membership</a>
-                        <p class="plan-fine">No registration fee. <span data-price="text_cancelation"></span> cancelation fee if canceled within 12 months.</p>
+                        <div class="plan-body">
+                            <div class="plan-list-box">
+                                <h6 class="plan-subhead">Need an Appointment?</h6>
+                                <ul class="plan-items">
+                                    <li><span class="plan-chip chip-blue" aria-hidden="true">🏥</span><span class="plan-item-label">Office Visit</span><span class="plan-item-price" data-price="text_office"></span></li>
+                                    <li><span class="plan-chip chip-blue" aria-hidden="true">💻</span><span class="plan-item-label">Video Visit</span><span class="plan-item-price" data-price="text_virtual"></span></li>
+                                    <li><span class="plan-chip chip-pink" aria-hidden="true">💊</span><span class="plan-item-label">Prescriptions</span><span class="plan-item-price" data-price="text_order"></span></li>
+                                    <li><span class="plan-chip chip-green" aria-hidden="true">🧪</span><span class="plan-item-label">Lab &amp; Imaging Orders</span><span class="plan-item-price" data-price="text_order"></span></li>
+                                    <li><span class="plan-chip chip-purple" aria-hidden="true">🦷</span><span class="plan-item-label">Dental cleanings with x-rays</span><span class="plan-item-price" data-price="text_dental_cleaning"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Start Text Membership <span aria-hidden="true">→</span></a>
+                        <p class="plan-fine"><span class="plan-fine-item">✓ No registration fee</span> · <span class="plan-fine-item">✓ Month-to-month plans cancel anytime</span><br>Annual plans are a 12-month commitment.</p>
                     </div>
 
                     <!-- Full Membership (featured) -->
                     <div class="plan-card plan-featured wow fadeInUpShake" data-wow-delay="0.3s">
-                        <div class="plan-badge">Most Popular</div>
-                        <div class="plan-emoji">👶</div>
+                        <div class="plan-badge"><span aria-hidden="true">★</span> Most Popular</div>
+                        <div class="plan-icon" aria-hidden="true">👩‍👦</div>
                         <h3>Full Membership</h3>
-                        <p class="plan-desc">Families looking for comprehensive and holistic pediatric primary care through texting and visits.</p>
-                        <div class="plan-price-line"><span data-price="full_zero_to_one"></span><span class="unit">/month per child</span></div>
-                        <p class="plan-annual">🟢 Save 20% with annual billing</p>
-                        <h6 class="plan-subhead">Everything Included</h6>
-                        <ul class="plan-list-plain">
-                            <li>🏥 Office visits</li>
-                            <li>💬 Texting</li>
-                            <li>💊 Prescriptions</li>
-                            <li>🧪 Lab & imaging orders</li>
-                            <li>🦷 Two dental cleanings with x-rays</li>
-                            <li>🏠 <strong>Home Visits</strong> — Starting at <span data-price="full_home"></span></li>
-                        </ul>
-
-                        <div class="family-ribbon">
-                            <hr>
-                            <p class="family-ribbon-title"><span class="emoji">👨‍👩‍👧‍👦</span> Large Family Savings</p>
-                            <p class="family-ribbon-sub">Never pay more than <strong><span data-price="all_kids"></span>/month</strong></p>
-                            <hr>
+                        <p class="plan-desc">Families looking for comprehensive and holistic pediatric primary care through texting and in person visits.</p>
+                        <div class="plan-prices">
+                            <div class="price-block">
+                                <div class="price-amount"><span data-price="full_zero_to_one"></span><span class="price-per">/month</span></div>
+                                <div class="price-note">per child</div>
+                            </div>
+                            <div class="price-block price-block-annual">
+                                <div class="price-amount"><span data-price="full_annual_monthly"></span><span class="price-per">/month</span></div>
+                                <div class="price-note">with annual commitment</div>
+                                <div class="price-fine">(<span data-price="full_annual"></span>/year) <span class="save-pill">Save <span data-price="full_annual_discount"></span></span></div>
+                            </div>
                         </div>
-                        <a class="btn btn-primary plan-btn" data-link="full" target="_blank">Start Full Membership</a>
-                        <p class="plan-fine">No registration fee. <span data-price="full_cancelation"></span> cancelation fee if canceled within 12 months.</p>
+                        <div class="plan-body">
+                            <div class="plan-list-box">
+                                <h6 class="plan-subhead">Everything Included</h6>
+                                <ul class="plan-items">
+                                    <li><span class="plan-chip chip-blue" aria-hidden="true">🏥</span><span class="plan-item-label">Office visits</span></li>
+                                    <li><span class="plan-chip chip-pink" aria-hidden="true">💬</span><span class="plan-item-label">Texting</span></li>
+                                    <li><span class="plan-chip chip-pink" aria-hidden="true">💊</span><span class="plan-item-label">Prescriptions</span></li>
+                                    <li><span class="plan-chip chip-green" aria-hidden="true">🧪</span><span class="plan-item-label">Lab &amp; imaging orders</span></li>
+                                    <li><span class="plan-chip chip-purple" aria-hidden="true">🦷</span><span class="plan-item-label">Two dental cleanings with x-rays</span></li>
+                                    <li><span class="plan-chip chip-orange" aria-hidden="true">🏠</span><span class="plan-item-label"><strong>Home visits</strong> — Starting at <span data-price="full_home"></span></span></li>
+                                </ul>
+                            </div>
+                            <div class="family-ribbon">
+                                <span class="family-ribbon-icon" aria-hidden="true">👨‍👩‍👧‍👦</span>
+                                <div>
+                                    <p class="family-ribbon-title">Large Family Savings</p>
+                                    <p class="family-ribbon-sub">Never pay more than <strong><span data-price="all_kids"></span>/month</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary plan-btn" data-link="full" target="_blank">Start Full Membership <span aria-hidden="true">→</span></a>
+                        <p class="plan-fine"><span class="plan-fine-item">✓ No registration fee</span> · <span class="plan-fine-item">✓ Month-to-month plans cancel anytime</span><br>Annual plans are a 12-month commitment.</p>
                     </div>
                 </div>
+
+                <!-- Email Signup Start -->
+                <div class="email-signup wow fadeInUp" data-wow-delay="0.1s">
+                    <h2>Not ready to <span class="accent">commit?</span></h2>
+                    <p class="email-signup-sub">Get member specials and pediatric tips in your inbox.</p>
+                    <div class="email-signup-form">
+                        <!-- PASTE THE GOHIGHLEVEL FORM EMBED CODE HERE (the <iframe> and the <script> line).
+                             This whole section stays hidden until the embed is added. -->
+                    </div>
+                    <p class="email-signup-fine">No spam. Unsubscribe anytime.</p>
+                </div>
+                <!-- Email Signup End -->
             </div>
         </div>
         <!-- Membership End -->
@@ -721,7 +908,7 @@
         </div>
 
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button" style="margin-top: 60px;"><span class="button button-lg">Text a Doctor Now</span></a>
+            <a class="btn btn-primary rounded-pill py-sm-2 px-sm-4 animated slideInLeft text-button btn-shine" style="margin-top: 60px;"><span class="button button-lg">Text a Doctor Now</span></a>
         </div>
 
         <!--Cookie Bot CMP Compliance -->
@@ -764,6 +951,17 @@
             document.querySelectorAll('[data-price]').forEach(el => {
             const key = el.dataset.price;
             el.textContent = prices[key] ?? 'N/A';
+            });
+        });
+    </script>
+
+    <!-- Highlight the Full Membership button once its card finishes the shake animation -->
+    <script>
+        document.querySelectorAll('.plan-card.fadeInUpShake').forEach(card => {
+            card.addEventListener('animationend', e => {
+                if (e.target !== card || e.animationName !== 'fadeInUpShake') return;
+                const btn = card.querySelector('.plan-btn');
+                if (btn) btn.classList.add('plan-btn-highlight');
             });
         });
     </script>
