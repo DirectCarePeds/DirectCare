@@ -432,6 +432,10 @@
             letter-spacing: 0.02em;
             vertical-align: 1px;
         }
+        /* One monthly price with the green annual-savings tag under it */
+        .plan-card .plan-prices.single { grid-template-columns: 1fr; padding: 1rem 0; }
+        .plan-card .plan-prices.single .price-amount { font-size: 2.4rem; }
+        .plan-card .plan-prices.single .save-pill { font-size: 0.85rem; padding: 4px 14px; margin-top: 0.6rem; }
         @media (max-width: 480px) {
             .plan-card .plan-prices { grid-template-columns: 1fr; row-gap: 1rem; }
             .plan-card .price-block-annual { border-left: none; padding-left: 0; border-top: 1px solid rgba(16, 55, 65, 0.15); padding-top: 1rem; }
@@ -730,16 +734,12 @@
                     <div class="plan-card plan-value wow fadeInUp" data-wow-delay="0.1s">
                         <h3><span class="plan-icon" aria-hidden="true">💬</span>Text Membership</h3>
                         <p class="plan-desc">Text a pediatrician about all your kids’ health.<br>Pay as you go for visits and orders.</p>
-                        <div class="plan-prices">
+                        <div class="plan-prices single">
                             <div class="price-block">
                                 <div class="price-label">Month-to-Month</div>
                                 <div class="price-amount"><span data-price="text"></span><span class="price-per">/month</span></div>
                                 <div class="price-note">for all kids</div>
-                            </div>
-                            <div class="price-block price-block-annual">
-                                <div class="price-label price-label-annual">Annual Commitment</div>
-                                <div class="price-amount"><span data-price="text_annual_monthly"></span><span class="price-per">/month</span></div>
-                                <div class="price-fine"><span class="save-pill">Save <span data-price="text_annual_discount"></span></span></div>
+                                <span class="save-pill">Save <span data-price="text_annual_discount"></span> with Annual Commitment</span>
                             </div>
                         </div>
                         <div class="plan-body">
@@ -755,7 +755,7 @@
                             </div>
                         </div>
                         <a class="btn btn-primary plan-btn" data-link="text_plan" target="_blank">Start Text Membership <span aria-hidden="true">→</span></a>
-                        <p class="plan-fine"><span class="plan-fine-item">✓ No registration fee</span> · <span class="plan-fine-item">✓ Month-to-month plans cancel anytime</span><br>Annual price is a 12-month commitment.</p>
+                        <p class="plan-fine"><span class="plan-fine-item">✓ No registration fee</span> · <span class="plan-fine-item">✓ Month-to-month plans cancel anytime</span><br>Annual commitment is 12 months.</p>
                     </div>
 
                     <!-- Full Membership (featured) -->
@@ -763,16 +763,12 @@
                         <div class="plan-badge"><span aria-hidden="true">★</span> Most Popular</div>
                         <h3><span class="plan-icon" aria-hidden="true">👩‍👦</span>Full Membership</h3>
                         <p class="plan-desc">Families looking for comprehensive and holistic pediatric primary care through texting and in person visits.</p>
-                        <div class="plan-prices">
+                        <div class="plan-prices single">
                             <div class="price-block">
                                 <div class="price-label">Month-to-Month</div>
                                 <div class="price-amount"><span data-price="full_zero_to_one"></span><span class="price-per">/month</span></div>
                                 <div class="price-note">per child</div>
-                            </div>
-                            <div class="price-block price-block-annual">
-                                <div class="price-label price-label-annual">Annual Commitment</div>
-                                <div class="price-amount"><span data-price="full_annual_monthly"></span><span class="price-per">/month</span></div>
-                                <div class="price-fine"><span class="save-pill">Save <span data-price="full_annual_discount"></span></span></div>
+                                <span class="save-pill">Save <span data-price="full_annual_discount"></span> with Annual Commitment</span>
                             </div>
                         </div>
                         <div class="plan-body">
@@ -796,7 +792,7 @@
                             </div>
                         </div>
                         <a class="btn btn-primary plan-btn" data-link="full" target="_blank">Start Full Membership <span aria-hidden="true">→</span></a>
-                        <p class="plan-fine"><span class="plan-fine-item">✓ No registration fee</span> · <span class="plan-fine-item">✓ Month-to-month plans cancel anytime</span><br>Annual price is a 12-month commitment.</p>
+                        <p class="plan-fine"><span class="plan-fine-item">✓ No registration fee</span> · <span class="plan-fine-item">✓ Month-to-month plans cancel anytime</span><br>Annual commitment is 12 months.</p>
                     </div>
                 </div>
 
