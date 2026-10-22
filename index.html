@@ -559,11 +559,48 @@
         .email-signup h2 { font-size: 1.9rem; font-weight: 800; color: #103741; margin: 0 0 0.4rem; }
         .email-signup h2 .accent { color: #e8536b; }
         .email-signup-sub { font-size: 1rem; color: #4a5b61; margin: 0 auto 1.25rem; max-width: 520px; }
-        .email-signup-form { max-width: 560px; margin: 0 auto; }
-        .email-signup-fine { font-size: 0.78rem; color: #6c757d; margin: 0.75rem 0 0; }
-        /* Stays hidden until the GoHighLevel form embed is pasted in */
-        .email-signup:not(:has(iframe)) { display: none; }
+        /* Green text with a gold shine that sweeps left to right, then pauses */
+        .email-signup-highlight { color: #23794a; }
+        @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+            .email-signup-highlight {
+                background: linear-gradient(90deg, #23794a 40%, #f2c200 50%, #23794a 60%);
+                background-size: 250% 100%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: discountSweep 3s ease-in-out infinite;
+            }
+        }
+        @keyframes discountSweep {
+            0%        { background-position: 100% 0; }
+            60%, 100% { background-position: 0% 0; }
+        }
+        @media (prefers-reduced-motion: reduce) { .email-signup-highlight { animation: none; } }
+        .email-signup-form { max-width: 600px; margin: 0 auto; display: flex; gap: 0.5rem; }
+        .email-signup-form input[type="text"],
+        .email-signup-form input[type="email"] {
+            flex: 1;
+            min-width: 0;
+            padding: 0.7rem 1.1rem;
+            border: 1px solid rgba(16, 55, 65, 0.25);
+            border-radius: 999px;
+            font-size: 1rem;
+            background: #fff;
+        }
+        .email-signup-form[hidden] { display: none; }
+        .email-signup-thanks { font-size: 1.1rem; font-weight: 700; color: #23794a; margin: 0; }
+        .email-signup-fine { font-size: 0.78rem; color: #6c757d; margin: 0.75rem auto 0; max-width: 520px; }
+        .email-signup .email-signup-btn {
+            padding: 0.7rem 2rem;
+            border-radius: 999px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            background-color: #103741;
+            border-color: #103741;
+        }
+        .email-signup .email-signup-btn:hover { background-color: #0b262d; border-color: #0b262d; }
         @media (max-width: 480px) {
+            .email-signup-form { flex-direction: column; }
             .email-signup { padding: 1.75rem 1.25rem; }
             .email-signup h2 { font-size: 1.5rem; }
         }
@@ -798,13 +835,18 @@
 
                 <!-- Email Signup Start -->
                 <div class="email-signup wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Not ready to <span class="accent">commit?</span></h2>
-                    <p class="email-signup-sub">Get member specials and pediatric tips in your inbox.</p>
-                    <div class="email-signup-form">
-                        <!-- PASTE THE GOHIGHLEVEL FORM EMBED CODE HERE (the <iframe> and the <script> line).
-                             This whole section stays hidden until the embed is added. -->
-                    </div>
-                    <p class="email-signup-fine">No spam. Unsubscribe anytime.</p>
+                    <h2>Not ready to <span class="accent">join yet?</span></h2>
+                    <p class="email-signup-sub">Be the first to know when we offer <span class="email-signup-highlight">membership discounts</span>. Leave your email and we’ll let you know.</p>
+                    <!-- Sends each signup to appointments@ through FormSubmit (no account needed) -->
+                    <form class="email-signup-form" id="discountSignup" action="https://formsubmit.co/appointments@directcarepediatrics.com" method="POST">
+                        <input type="text" name="name" placeholder="First name" aria-label="First name" autocomplete="given-name" required>
+                        <input type="email" name="email" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
+                        <input type="hidden" name="_subject" value="Website: discount notification signup">
+                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                        <button type="submit" class="btn btn-primary email-signup-btn">Notify Me</button>
+                    </form>
+                    <p class="email-signup-thanks" id="discountSignupThanks" hidden>Thanks! We’ll let you know.</p>
+                    <p class="email-signup-fine">No spam. Only the good stuff from Direct Care Pediatrics. Unsubscribe anytime.</p>
                 </div>
                 <!-- Email Signup End -->
             </div>
@@ -958,6 +1000,30 @@
                 if (btn) btn.classList.add('plan-btn-highlight');
             });
         });
+
+        // Discount signup: send in the background and show "Thanks!" in place of the form
+        const discountForm = document.getElementById('discountSignup');
+        if (discountForm) {
+            discountForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const btn = discountForm.querySelector('button');
+                btn.disabled = true;
+                fetch(discountForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(discountForm)
+                })
+                    .then(res => {
+                        if (!res.ok) throw new Error();
+                        discountForm.hidden = true;
+                        document.getElementById('discountSignupThanks').hidden = false;
+                    })
+                    .catch(() => {
+                        btn.disabled = false;
+                        alert('Sorry, that didn’t go through. Please try again or email appointments@directcarepediatrics.com.');
+                    });
+            });
+        }
     </script>
 
     <!-- Load external links -->
